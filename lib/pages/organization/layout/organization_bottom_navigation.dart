@@ -30,8 +30,8 @@ class OrganizationLayoutState extends State<OrganizationLayout> {
         children: _pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.indigo,
-        unselectedItemColor: Colors.blueGrey.shade800,
+        selectedItemColor: Colors.pink,
+        unselectedItemColor: Colors.indigo,
         currentIndex: _currentIndex,
         iconSize: 28,
         onTap: (int index) {

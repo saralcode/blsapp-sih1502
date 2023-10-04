@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 OutlineInputBorder border({Color color = Colors.blue}) {
   return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(15),
+    borderRadius: BorderRadius.circular(10),
     borderSide: BorderSide(width: 2, color: color),
   );
 }
