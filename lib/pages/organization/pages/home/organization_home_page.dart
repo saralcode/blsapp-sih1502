@@ -1,5 +1,6 @@
 import 'package:bls/customs/design_button/design_button.dart';
 import 'package:bls/pages/organization/pages/home/courses_or_classes/courses_or_classes_page.dart';
+import 'package:bls/utils/user/user_types.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,16 +20,25 @@ class _OrganizationHomePageState extends State<OrganizationHomePage> {
       ),
       body: ListView(
         children: [
-          deisgnButton(
+          designButton(
               text: "Classes/Courses",
               onClick: () {
-                Get.to(() => const CoursesOrClasses());
+                Get.to(() => const CoursesOrClasses(
+                      role: Role.organization,
+                    ));
               },
               begin: Colors.pink,
               end: Colors.pinkAccent.shade700),
-          deisgnButton(
-              text: "Teachers", begin: Colors.orange, end: Colors.deepOrange),
-          deisgnButton(
+          designButton(
+              onClick: () {
+                Get.to(() => const CoursesOrClasses(
+                      role: Role.teacher,
+                    ));
+              },
+              text: "Teachers",
+              begin: Colors.orange,
+              end: Colors.deepOrange),
+          designButton(
               text: "Students",
               begin: Colors.purple,
               end: Colors.deepPurple.shade700),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_rx/src/rx_typedefs/rx_typedefs.dart';
 
 List<Color> color = [Colors.blue.shade400, Colors.blue.shade600];
-Widget deisgnButton({
+Widget designButton({
   Callback? onClick,
   required String text,
   Color begin = Colors.blue,

@@ -1,4 +1,8 @@
+import 'package:bls/pages/organization/pages/home/courses_or_classes/chapters/topics/add_update_post/add_update_post.dart';
+import 'package:bls/pages/organization/pages/home/courses_or_classes/chapters/topics/add_update_post/add_update_youtube.dart';
+import 'package:bls/pages/organization/pages/home/courses_or_classes/courses_or_classes_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Topic {
   int id;
@@ -28,35 +32,61 @@ class _TopicPageState extends State<TopicPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Chapter 1"),
+        title: const Text("Chapter 1 Topics"),
       ),
-      body: ListView.builder(
-          itemCount: topics.length,
-          padding: const EdgeInsets.all(8),
-          itemBuilder: (c, index) {
-            Topic topic = topics.elementAt(index);
-            return Card(
-              child: ListTile(
-                onTap: () {},
-                leading: Container(
-                  decoration: BoxDecoration(
-                      color: Colors.pink,
-                      borderRadius: BorderRadius.circular(20)),
-                  height: 40,
-                  width: 40,
-                  alignment: Alignment.center,
-                  child: Text(
-                    topic.title,
-                    style: const TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.bold),
-                    textScaleFactor: 1.2,
-                  ),
-                ),
-                title: Text(topic.description),
-                subtitle: Text("Topic ${topic.title}"),
-              ),
-            );
-          }),
+      body: Column(
+        children: [
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            width: Get.size.width * 0.9,
+            child: FloatingActionButton.extended(
+                backgroundColor: Colors.indigo.shade700,
+                onPressed: () {},
+                label: Text("View Study Materials")),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SearchBar(
+              elevation: MaterialStateProperty.all(2),
+              hintText: "Search a topic",
+              trailing: [
+                IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+              ],
+            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+                itemCount: topics.length,
+                padding: const EdgeInsets.all(8),
+                itemBuilder: (c, index) {
+                  Topic topic = topics.elementAt(index);
+                  return Card(
+                    child: ListTile(
+                      onTap: () {},
+                      leading: Container(
+                        decoration: BoxDecoration(
+                            color: generateRandomColor(),
+                            borderRadius: BorderRadius.circular(20)),
+                        height: 40,
+                        width: 40,
+                        alignment: Alignment.center,
+                        child: Text(
+                          topic.title,
+                          style: const TextStyle(
+                              color: Colors.white, fontWeight: FontWeight.bold),
+                          textScaleFactor: 1.2,
+                        ),
+                      ),
+                      title: Text(topic.description),
+                      subtitle: Text("Topic ${topic.title}"),
+                    ),
+                  );
+                }),
+          ),
+        ],
+      ),
       bottomSheet: BottomAppBar(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -72,7 +102,9 @@ class _TopicPageState extends State<TopicPage> {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const PostCUDPage(path: ""));
+                },
                 child: const Icon(
                   Icons.post_add,
                   color: Colors.purple,
@@ -80,7 +112,9 @@ class _TopicPageState extends State<TopicPage> {
                 ),
               ),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => YoutubeCUDPostPage());
+                },
                 child: const Icon(
                   Icons.videocam,
                   color: Colors.blue,

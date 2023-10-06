@@ -14,7 +14,7 @@ class _OrganizationStudyPageState extends State<OrganizationStudyPage> {
       appBar: AppBar(
         title: const Text("Study"),
       ),
-      body: Text("Study page"),
+      body: const Text("Study page"),
     );
   }
 }

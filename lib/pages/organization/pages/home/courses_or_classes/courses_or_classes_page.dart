@@ -1,7 +1,8 @@
 import 'dart:math';
 
 import 'package:bls/pages/organization/pages/home/courses_or_classes/add_update_courses_classes/add_update_courses_classes.dart';
-import 'package:bls/pages/organization/pages/home/courses_or_classes/chapters/chapters.dart';
+import 'package:bls/pages/organization/pages/home/courses_or_classes/subjects/organization_subject_page.dart';
+import 'package:bls/utils/user/user_types.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -47,7 +48,8 @@ Color generateRandomColor() {
 }
 
 class CoursesOrClasses extends StatefulWidget {
-  const CoursesOrClasses({super.key});
+  final Role role;
+  const CoursesOrClasses({super.key, required this.role});
 
   @override
   State<CoursesOrClasses> createState() => _CoursesOrClassesState();
@@ -61,16 +63,19 @@ class _CoursesOrClassesState extends State<CoursesOrClasses> {
         title: const Text("Courses/Classes"),
       ),
       body: GridView.builder(
-          itemCount: courseList.length,
+          itemCount: 3,
           gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 5),
+              childAspectRatio: 3 / 4,
+              crossAxisCount: 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 5),
           padding: const EdgeInsets.all(5),
           itemBuilder: (c, index) {
             Course course = courseList.elementAt(index);
             return Material(
               child: InkWell(
                 onTap: () {
-                  Get.to(() => ChapterPage());
+                  Get.to(() => const SubjectsPage());
                 },
                 child: Card(
                     elevation: 10,
@@ -93,25 +98,34 @@ class _CoursesOrClassesState extends State<CoursesOrClasses> {
                           padding: const EdgeInsets.all(10),
                           child: Text(
                             course.description,
+                            maxLines: 4,
                             textScaleFactor: 1.2,
                           ),
                         ),
                         Expanded(child: Container()),
-                        TextButton.icon(
-                            label: const Text("Edit"),
-                            onPressed: () {},
-                            icon: const Icon(Icons.edit))
+                        if (widget.role == Role.organization)
+                          TextButton.icon(
+                              label: const Text("Edit"),
+                              onPressed: () {},
+                              icon: const Icon(Icons.edit))
                       ],
                     )),
               ),
             );
           }),
-      floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.pink,
-          onPressed: () {
-            Get.to(() => const CoursesClassesCUDPage(path: "/"));
-          },
-          label: const Text("Add Classe/Course")),
+      bottomNavigationBar: widget.role != Role.organization
+          ? null
+          : BottomAppBar(
+              height: 65,
+              child: Center(
+                child: FloatingActionButton.extended(
+                    backgroundColor: Colors.pink,
+                    onPressed: () {
+                      Get.to(() => const CoursesClassesCUDPage(path: "/"));
+                    },
+                    label: const Text("Add Classe/Course")),
+              ),
+            ),
     );
   }
 }
