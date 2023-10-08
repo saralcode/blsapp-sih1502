@@ -8,46 +8,48 @@ class Post {
   int courseId;
   int bookId;
   int chapterId;
-  String topics;
-  String postId;
+  List<String>? topics;
   String title;
   String description;
-  List<String> images;
+  List<String>? images;
   String? link;
-  List<String> likes;
+  List<int> likes;
 
-  List<Comment> comments;
+  List<Doubt> doubts;
 
-  Post(
-    this.id,
-    this.role,
-    this.type,
-    this.organizationId,
-    this.courseId,
-    this.bookId,
-    this.chapterId,
+  Post({
+    required this.id,
+    required this.role,
+    required this.type,
+    required this.organizationId,
+    required this.courseId,
+    required this.bookId,
+    required this.chapterId,
     this.topics,
-    this.postId,
-    this.title,
-    this.description,
-    this.images,
-    this.link,
-    this.likes,
-    this.comments,
-  );
+    required this.title,
+    required this.description,
+    required this.images,
+    required this.link,
+    required this.likes,
+    required this.doubts,
+  });
 }
 
-class Comment {
-  String commentId;
+class Doubt {
+  String doubtsId;
   String message;
   List<Reply> replies;
 
-  Comment(this.commentId, this.message, this.replies);
+  Doubt({
+    required this.doubtsId,
+    required this.message,
+    required this.replies,
+  });
 }
 
 class Reply {
   String replyId;
   String replyMessage;
 
-  Reply(this.replyId, this.replyMessage);
+  Reply({required this.replyId, required this.replyMessage});
 }

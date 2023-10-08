@@ -1,6 +1,6 @@
-import 'package:bls/pages/organization/pages/home/courses_or_classes/chapters/topics/add_update_post/add_update_post.dart';
-import 'package:bls/pages/organization/pages/home/courses_or_classes/chapters/topics/add_update_post/add_update_youtube.dart';
+import 'package:bls/pages/organization/pages/home/courses_or_classes/chapters/topics/study_materials/study_materials.dart';
 import 'package:bls/pages/organization/pages/home/courses_or_classes/courses_or_classes_page.dart';
+import 'package:bls/utils/post/posts.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -36,15 +36,8 @@ class _TopicPageState extends State<TopicPage> {
       ),
       body: Column(
         children: [
-          SizedBox(
+          const SizedBox(
             height: 10,
-          ),
-          Container(
-            width: Get.size.width * 0.9,
-            child: FloatingActionButton.extended(
-                backgroundColor: Colors.indigo.shade700,
-                onPressed: () {},
-                label: Text("View Study Materials")),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -64,7 +57,10 @@ class _TopicPageState extends State<TopicPage> {
                   Topic topic = topics.elementAt(index);
                   return Card(
                     child: ListTile(
-                      onTap: () {},
+                      onTap: () {
+                        Get.to(() =>
+                            StudyMaterialPage(posts: PostController().posts));
+                      },
                       leading: Container(
                         decoration: BoxDecoration(
                             color: generateRandomColor(),
@@ -85,53 +81,21 @@ class _TopicPageState extends State<TopicPage> {
                   );
                 }),
           ),
-        ],
-      ),
-      bottomSheet: BottomAppBar(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () {},
-                child: const Icon(
-                  Icons.movie_filter,
-                  color: Colors.pink,
-                  size: 35,
-                ),
-              ),
-              TextButton(
+          SizedBox(
+            width: Get.size.width * 0.9,
+            child: FloatingActionButton.extended(
+                backgroundColor: Colors.indigo.shade700,
                 onPressed: () {
-                  Get.to(() => const PostCUDPage(path: ""));
+                  Get.to(() => const StudyMaterialPage(
+                        posts: [],
+                      ));
                 },
-                child: const Icon(
-                  Icons.post_add,
-                  color: Colors.purple,
-                  size: 35,
-                ),
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.to(() => YoutubeCUDPostPage());
-                },
-                child: const Icon(
-                  Icons.videocam,
-                  color: Colors.blue,
-                  size: 35,
-                ),
-              ),
-              TextButton(
-                onPressed: () {},
-                child: const Icon(
-                  Icons.picture_as_pdf,
-                  color: Colors.pink,
-                  size: 35,
-                ),
-              ),
-            ],
+                label: const Text("View Study Materials")),
           ),
-        ),
+          const SizedBox(
+            height: 5,
+          )
+        ],
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:bls/customs/input_decoration/input_decoration.dart';
 import 'package:bls/pages/reels/doubts/doubt_card.dart';
 import 'package:bls/pages/reels/doubts/doubts_controller.dart';
 import 'package:flutter/material.dart';
@@ -11,59 +12,119 @@ class DoubtsPage extends StatefulWidget {
   DoubtsPageState createState() => DoubtsPageState();
 }
 
-class DoubtsPageState extends State<DoubtsPage> {
+class DoubtsPageState extends State<DoubtsPage>
+    with SingleTickerProviderStateMixin {
   final TextEditingController commentEditingController =
       TextEditingController();
+  late TabController tabController;
+  @override
+  void initState() {
+    tabController = TabController(vsync: this, length: 2);
+    setState(() {});
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<DoubtController>(builder: (state) {
       return Scaffold(
-        body: Container(
-          margin: const EdgeInsets.only(
-            top: 40,
-            left: 20,
-            right: 20,
-          ),
-          padding: const EdgeInsets.symmetric(vertical: 10),
-          decoration: const BoxDecoration(
-              border: Border(top: BorderSide(color: Colors.grey, width: 3))),
-          height: Get.size.height * 0.7,
-          // color: Colors.white,
-          child: ListView.builder(
-            itemCount: state.comments.length,
-            itemBuilder: (ctx, index) => DoubtCard(
-              doubt: state.comments[index],
-            ),
+        appBar: AppBar(
+          title: const Text("Doubts"),
+          bottom: TabBar(
+            indicatorColor: Colors.white,
+            controller: tabController,
+            tabs: [
+              Tab(
+                child: TextButton.icon(
+                    onPressed: null,
+                    style: const ButtonStyle(
+                      iconColor: MaterialStatePropertyAll(Colors.white),
+                      foregroundColor: MaterialStatePropertyAll(Colors.white),
+                    ),
+                    icon: const Icon(
+                      Icons.published_with_changes,
+                    ),
+                    label: const Text(
+                      "Solved",
+                    )),
+              ),
+              Tab(
+                child: TextButton.icon(
+                    onPressed: null,
+                    style: const ButtonStyle(
+                      iconColor: MaterialStatePropertyAll(Colors.white),
+                      foregroundColor: MaterialStatePropertyAll(Colors.white),
+                    ),
+                    icon: const Icon(
+                      Icons.unpublished_outlined,
+                    ),
+                    label: const Text("Unsolved")),
+              ),
+            ],
           ),
         ),
-        bottomNavigationBar: Row(
+        body: TabBarView(
+          controller: tabController,
           children: [
-            const CircleAvatar(
-              // backgroundImage: NetworkImage(user.photoUrl),
-              radius: 18,
-              child: Text("S"),
-            ),
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16, right: 8),
-                child: TextFormField(
-                  controller: commentEditingController,
-                  decoration: InputDecoration(
-                    suffix: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Post',
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                    ),
-                    hintText: 'Comment as Sonu',
-                    // border: InputBorder.none,
+            ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: state.comments.length,
+                itemBuilder: (ctx, index) => DoubtCard(
+                      doubt: state.comments[index],
+                    )),
+            ListView.builder(
+                padding: const EdgeInsets.all(8),
+                itemCount: state.comments.length,
+                itemBuilder: (ctx, index) => DoubtCard(
+                      doubt: state.comments[index],
+                    )),
+          ],
+        ),
+        bottomSheet: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: TextFormField(
+            controller: commentEditingController,
+            keyboardType: TextInputType.multiline,
+            minLines: 1,
+            maxLines: 4,
+            maxLength: 200,
+            textAlignVertical: TextAlignVertical.center,
+            decoration: InputDecoration(
+                prefixIcon: const Padding(
+                  padding: EdgeInsets.only(left: 5, right: 8),
+                  child: CircleAvatar(
+                    // backgroundImage: NetworkImage(user.photoUrl),
+                    backgroundColor: Colors.deepOrange,
+                    foregroundColor: Colors.white,
+
+                    radius: 16,
+                    child: Text("S"),
                   ),
                 ),
-              ),
-            ),
-          ],
+                suffixIcon: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    IconButton(
+                        onPressed: () {},
+                        constraints: const BoxConstraints(),
+                        icon: const Icon(
+                          Icons.image,
+                          color: Colors.pink,
+                        )),
+                    IconButton(
+                        onPressed: () {},
+                        constraints: const BoxConstraints(),
+                        icon: const Icon(
+                          Icons.send_outlined,
+                          color: Colors.blue,
+                        ))
+                  ],
+                ),
+                hintText: 'Ask Your Doubt',
+                border: border(),
+                contentPadding: const EdgeInsets.only(
+                    top: 0, bottom: 10, left: 5, right: 5)),
+          ),
         ),
       );
     });

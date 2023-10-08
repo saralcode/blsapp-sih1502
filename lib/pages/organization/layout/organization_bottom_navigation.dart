@@ -2,7 +2,7 @@ import 'package:bls/pages/organization/pages/home/organization_home_page.dart';
 import 'package:bls/pages/organization/pages/notification/organization_notification_page.dart';
 import 'package:bls/pages/organization/pages/profile/organization_profile_page.dart';
 import 'package:bls/pages/organization/pages/search/organization_search_page.dart';
-import 'package:bls/pages/organization/pages/study/organization_study_page.dart';
+import 'package:bls/pages/organization/pages/analytics/organization_analytics_page.dart';
 import 'package:flutter/material.dart';
 
 class OrganizationLayout extends StatefulWidget {
@@ -17,7 +17,7 @@ class OrganizationLayoutState extends State<OrganizationLayout> {
   final List<Widget> _pages = const [
     OrganizationHomePage(),
     OrganizationSearchPage(),
-    OrganizationStudyPage(),
+    OrganizationAnalyticsPage(),
     OrganizationNotificationPage(),
     OrganizationProfilePage()
   ];
@@ -51,8 +51,8 @@ class OrganizationLayoutState extends State<OrganizationLayout> {
             label: 'Search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.local_library),
-            label: 'Study',
+            icon: Icon(Icons.auto_graph),
+            label: 'Analytics',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),

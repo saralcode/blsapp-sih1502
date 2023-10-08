@@ -1,32 +1,93 @@
 import 'package:bls/utils/post/post_state.dart';
+import 'package:get/get.dart';
 
-List<Post> posts = List.generate(20, (index) {
-  return Post(
-    index + 1,
-    'Role ${(index % 3) + 1}',
-    PostType.values[index % PostType.values.length],
-    (index % 5) + 1,
-    (index % 6) + 1,
-    (index % 7) + 1,
-    (index % 8) + 1,
-    'Topics ${index + 1}',
-    '_id ${(index % 10) + 1}',
-    'Title ${(index % 20) + 1}',
-    'Description ${(index % 20) + 1}',
-    ['Image1', 'Image2'],
-    (index % 2 == 0) ? 'Link ${(index % 5) + 1}' : null,
-    ['User1', 'User2'],
-    List.generate(3, (commentIndex) {
-      return Comment(
-        'CommentId ${(index % 20) + 1}_$commentIndex',
-        'Comment ${(index % 20) + 1}_$commentIndex',
-        List.generate(2, (replyIndex) {
-          return Reply(
-            'ReplyId ${(index % 20) + 1}_$commentIndex$replyIndex',
-            'Reply ${(index % 20) + 1}_$commentIndex$replyIndex',
-          );
-        }),
-      );
-    }),
-  );
-});
+class PostController extends GetxController {
+  List<Post> posts = [
+    Post(
+        id: 1,
+        role: "teacher",
+        type: PostType.pdf,
+        organizationId: 1,
+        courseId: 1,
+        bookId: 1,
+        chapterId: 1,
+        title: "Html Tutorial",
+        description: "Learn HTML With this tutorial",
+        images: null,
+        link: "assets/html_tutorial.pdf",
+        likes: [],
+        doubts: []),
+    Post(
+        id: 1,
+        role: "teacher",
+        type: PostType.youtube,
+        organizationId: 1,
+        courseId: 1,
+        bookId: 1,
+        chapterId: 1,
+        title: "Html Tutorial",
+        description: "Learn HTML With this tutorial",
+        images: null,
+        link: "https://www.youtube.com/watch?v=yJaz64e2GvE",
+        likes: [],
+        doubts: []),
+    Post(
+        id: 1,
+        role: "teacher",
+        type: PostType.youtube,
+        organizationId: 1,
+        courseId: 1,
+        bookId: 1,
+        chapterId: 1,
+        title: "Html Tutorial",
+        description: "Learn HTML With this tutorial",
+        images: null,
+        link: "https://www.youtube.com/watch?v=MSICFljRcb4",
+        likes: [],
+        doubts: []),
+    Post(
+        id: 1,
+        role: "teacher",
+        type: PostType.pdf,
+        organizationId: 1,
+        courseId: 1,
+        bookId: 1,
+        chapterId: 1,
+        title: "Html Tutorial",
+        description: "Learn HTML With this tutorial",
+        images: null,
+        link: "assets/html_tutorial.pdf",
+        likes: [],
+        doubts: []),
+    Post(
+        id: 1,
+        role: "teacher",
+        type: PostType.pdf,
+        organizationId: 1,
+        courseId: 1,
+        bookId: 1,
+        chapterId: 1,
+        title: "Html Tutorial",
+        description: "Learn HTML With this tutorial",
+        images: null,
+        link: "assets/html_tutorial.pdf",
+        likes: [],
+        doubts: []),
+    Post(
+        id: 1,
+        role: "teacher",
+        type: PostType.images,
+        organizationId: 1,
+        courseId: 1,
+        bookId: 1,
+        chapterId: 1,
+        title: "Html Tutorial",
+        description: "Learn HTML With this tutorial",
+        images: [
+          "https://images.unsplash.com/photo-1617471346061-5d329ab9c574?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29tcHV0ZXIlMjBwcm9ncmFtbWluZ3xlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=500&q=60",
+        ],
+        link: "assets/html_tutorial.pdf",
+        likes: [],
+        doubts: []),
+  ];
+}
