@@ -1,5 +1,4 @@
 import 'package:bls/pages/home/home_page.dart';
-import 'package:bls/pages/reels/reels_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,9 +16,6 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           appBarTheme: AppBarTheme(backgroundColor: Colors.blue.shade800)),
-      routes: {
-        "/reels": (c) => const ReelsPage(),
-      },
       home: const HomePage(),
     );
   }

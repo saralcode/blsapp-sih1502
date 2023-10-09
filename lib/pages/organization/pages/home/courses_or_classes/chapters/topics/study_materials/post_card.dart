@@ -5,6 +5,7 @@ import 'package:bls/pages/organization/pages/home/courses_or_classes/courses_or_
 import 'package:bls/pages/organization/pages/search/youtube_thumbnail_view.dart';
 import 'package:bls/pages/reels/doubts/show_doubts.dart';
 import 'package:bls/utils/post/post_state.dart';
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -104,7 +105,17 @@ class _PostCardState extends State<PostCard> {
                 ),
               )
             ] else ...[
-              CacheImage(url: widget.post.images![0]),
+              Container(
+                height: 300,
+                width: Get.size.width,
+                child: Swiper(
+                  axisDirection: AxisDirection.right,
+                  itemCount: widget.post.images!.length,
+                  itemBuilder: (context, index) {
+                    return CacheImage(url: widget.post.images![index]);
+                  },
+                ),
+              )
             ],
             const SizedBox(
               height: 5,

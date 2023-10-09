@@ -32,62 +32,74 @@ class _SubjectsPageState extends State<SubjectsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Subjects"),
-        ),
-        body: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SearchBar(
-                elevation: MaterialStateProperty.all(2),
-                hintText: "Search a subject",
-                trailing: [
-                  IconButton(onPressed: () {}, icon: const Icon(Icons.search))
-                ],
-              ),
+      appBar: AppBar(
+        title: const Text("Subjects"),
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: SearchBar(
+              elevation: MaterialStateProperty.all(2),
+              hintText: "Search a subject",
+              trailing: [
+                IconButton(onPressed: () {}, icon: const Icon(Icons.search))
+              ],
             ),
-            Expanded(
-              child: ListView.builder(
-                  itemCount: physicsSubjects.length,
-                  itemBuilder: (context, index) {
-                    Subject subject = physicsSubjects[index];
-                    return Card(
-                      child: ExpansionTile(
-                        tilePadding: EdgeInsets.zero,
-                        title: ListTile(
-                          onTap: () {
-                            Get.to(() => const ChapterPage());
-                          },
-                          leading: Container(
-                            decoration: BoxDecoration(
-                                color: generateRandomColor(),
-                                borderRadius: BorderRadius.circular(20)),
-                            height: 40,
-                            width: 40,
-                            alignment: Alignment.center,
-                            child: Text(
-                              "${subject.id}",
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                              textScaleFactor: 1.2,
-                            ),
+          ),
+          Expanded(
+            child: ListView.builder(
+                itemCount: physicsSubjects.length,
+                itemBuilder: (context, index) {
+                  Subject subject = physicsSubjects[index];
+                  return Card(
+                    child: ExpansionTile(
+                      tilePadding: EdgeInsets.zero,
+                      title: ListTile(
+                        onTap: () {
+                          Get.to(() => const ChapterPage());
+                        },
+                        leading: Container(
+                          decoration: BoxDecoration(
+                              color: generateRandomColor(),
+                              borderRadius: BorderRadius.circular(20)),
+                          height: 40,
+                          width: 40,
+                          alignment: Alignment.center,
+                          child: Text(
+                            "${subject.id}",
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                            textScaleFactor: 1.2,
                           ),
-                          title: Text(subject.title),
-                          subtitle: Text("Book ${subject.id}"),
                         ),
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(subject.description),
-                          )
-                        ],
+                        title: Text(subject.title),
+                        subtitle: Text("Book ${subject.id}"),
                       ),
-                    );
-                  }),
-            ),
-          ],
-        ));
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(subject.description),
+                        )
+                      ],
+                    ),
+                  );
+                }),
+          ),
+        ],
+      ),
+      bottomNavigationBar: BottomAppBar(
+        height: 65,
+        child: Center(
+          child: FloatingActionButton.extended(
+              backgroundColor: Colors.pink,
+              onPressed: () {
+                // Get.to(() => const CoursesClassesCUDPage(path: "/"));
+              },
+              label: const Text("Add Subjects/Books")),
+        ),
+      ),
+    );
   }
 }

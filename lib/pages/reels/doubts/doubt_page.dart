@@ -68,15 +68,15 @@ class DoubtsPageState extends State<DoubtsPage>
           children: [
             ListView.builder(
                 padding: const EdgeInsets.all(8),
-                itemCount: state.comments.length,
+                itemCount: state.solvedDoubts.length,
                 itemBuilder: (ctx, index) => DoubtCard(
-                      doubt: state.comments[index],
+                      doubt: state.solvedDoubts[index],
                     )),
             ListView.builder(
                 padding: const EdgeInsets.all(8),
-                itemCount: state.comments.length,
+                itemCount: state.unSolvedDoubts.length,
                 itemBuilder: (ctx, index) => DoubtCard(
-                      doubt: state.comments[index],
+                      doubt: state.unSolvedDoubts[index],
                     )),
           ],
         ),
@@ -108,7 +108,7 @@ class DoubtsPageState extends State<DoubtsPage>
                         onPressed: () {},
                         constraints: const BoxConstraints(),
                         icon: const Icon(
-                          Icons.image,
+                          Icons.attach_file_rounded,
                           color: Colors.pink,
                         )),
                     IconButton(

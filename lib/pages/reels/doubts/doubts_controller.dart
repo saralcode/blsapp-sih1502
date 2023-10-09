@@ -3,19 +3,41 @@ import 'package:get/get.dart';
 class Doubt {
   String username;
   String text;
+  bool solved;
   String? image;
   List<Doubt>? replies = [];
 
-  Doubt({required this.username, required this.text, this.replies, this.image});
+  Doubt(
+      {required this.username,
+      this.solved = false,
+      required this.text,
+      this.replies,
+      this.image});
 }
 
 class DoubtController extends GetxController {
-  final comments = <Doubt>[
-    Doubt(username: "sonu", text: "This is a comment", replies: [
-      Doubt(username: "hello", text: "replies"),
-      Doubt(username: "hello", text: "replies"),
-      Doubt(username: "hello", text: "replies"),
-    ])
+  final solvedDoubts = [
+    Doubt(
+        username: "Anurag",
+        text:
+            "What is the difference between the 'id' and 'class' attributes of HTML elements? ",
+        solved: true,
+        replies: [
+          Doubt(username: "hello", text: "replies"),
+          Doubt(username: "hello", text: "replies"),
+          Doubt(username: "hello", text: "replies"),
+        ]),
+  ];
+  final unSolvedDoubts = <Doubt>[
+    Doubt(
+        username: "Ankit",
+        text: "How to create a hyperlink in HTML?",
+        replies: [
+          Doubt(username: "hello", text: "replies"),
+          Doubt(username: "hello", text: "replies"),
+          Doubt(username: "hello", text: "replies"),
+        ]),
+
     // Doubt(
 
     //   'User1',
@@ -29,6 +51,6 @@ class DoubtController extends GetxController {
   ].obs;
 
   void addDoubt(Doubt comment) {
-    comments.add(comment);
+    // comments.add(comment);
   }
 }

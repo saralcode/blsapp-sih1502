@@ -1,4 +1,6 @@
-import 'package:bls/pages/organization/layout/organization_bottom_navigation.dart';
+import 'package:bls/pages/organization/layout/organization_layout.dart';
+import 'package:bls/pages/student/layout/student_layout.dart';
+import 'package:bls/pages/teacher/layout/teacher_layout.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -28,11 +30,9 @@ class _HomePageState extends State<HomePage> {
                 colors: [Color(0xff005C97), Color(0xff363795)])),
         child: SafeArea(
           child: GridView(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: context.isPortrait ? 1 : 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10),
-            padding: const EdgeInsets.all(20),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 1, childAspectRatio: 4 / 3),
+            padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 20),
             children: [
               // FloatingActionButton.extended(
               //     onPressed: () {
@@ -56,10 +56,24 @@ class _HomePageState extends State<HomePage> {
                   onPressed: () {
                     Get.to(() => const OrganizationLayout());
                   }),
-
-              showCard(title: "Teacher", icon: Icons.school),
-
-              showCard(title: "Student", icon: Icons.person),
+              GridView(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2),
+                children: [
+                  showCard(
+                      title: "Teacher",
+                      icon: Icons.school,
+                      onPressed: () {
+                        Get.to(() => const TeacherLayout());
+                      }),
+                  showCard(
+                      title: "Student",
+                      icon: Icons.person,
+                      onPressed: () {
+                        Get.to(() => const StudentLayout());
+                      }),
+                ],
+              )
             ],
           ),
         ),
@@ -74,35 +88,33 @@ Widget showCard(
     void Function()? onPressed}) {
   return InkWell(
     onTap: onPressed,
-    child: ConstrainedBox(
-      constraints: BoxConstraints(maxWidth: Get.size.width * 0.7),
-      child: Card(
-          child: Padding(
-        padding: const EdgeInsets.all(30),
-        child: AspectRatio(
-          aspectRatio: 4 / 3,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Icon(
-                icon,
-                color: Colors.pink,
-                size: 120,
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Text(
-                title,
-                style: const TextStyle(
-                    fontSize: 40,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "serif"),
-              )
-            ],
-          ),
+    child: Card(
+        child: Padding(
+      padding: const EdgeInsets.all(30),
+      child: AspectRatio(
+        aspectRatio: 4 / 3,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              icon,
+              color: Colors.pink,
+              size: 50,
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Text(
+              title,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: "serif"),
+            )
+          ],
         ),
-      )),
-    ),
+      ),
+    )),
   );
 }
