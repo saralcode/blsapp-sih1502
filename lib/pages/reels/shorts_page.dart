@@ -38,7 +38,7 @@ class _ShortsPageState extends State<ShortsPage> {
         child: Scaffold(
           backgroundColor: Colors.black,
           appBar: AppBar(
-            title: Text("Shorts"),
+            title: const Text("Shorts"),
           ),
           body: SafeArea(
             child: state.loadedReels.isEmpty

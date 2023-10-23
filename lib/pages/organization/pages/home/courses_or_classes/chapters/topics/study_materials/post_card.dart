@@ -105,11 +105,11 @@ class _PostCardState extends State<PostCard> {
                 ),
               )
             ] else ...[
-              Container(
+              SizedBox(
                 height: 300,
                 width: Get.size.width,
                 child: Swiper(
-                  axisDirection: AxisDirection.right,
+                  loop: false,
                   itemCount: widget.post.images!.length,
                   itemBuilder: (context, index) {
                     return CacheImage(url: widget.post.images![index]);

@@ -76,7 +76,7 @@ class DoubtCard extends StatelessWidget {
         if (doubt.replies!.isNotEmpty)
           TextButton(
             onPressed: () {},
-            child: Text("View Replies"),
+            child: const Text("View Replies"),
           )
       ],
     );

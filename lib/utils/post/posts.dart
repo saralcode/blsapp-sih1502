@@ -28,7 +28,7 @@ class PostController extends GetxController {
         title: "Html Tutorial",
         description: "Learn HTML With this tutorial",
         images: null,
-        link: "https://www.youtube.com/watch?v=yJaz64e2GvE",
+        link: "https://www.youtube.com/watch?v=irqbmMNs2Bo",
         likes: [],
         doubts: []),
     Post(

@@ -1,19 +1,19 @@
 import 'package:bls/pages/organization/pages/analytics/org_analytics_data.dart';
 import 'package:flutter/material.dart';
 
-class TeacherAnalyticsPage extends StatefulWidget {
-  const TeacherAnalyticsPage({super.key});
+class OrgStudentAnalytics extends StatefulWidget {
+  const OrgStudentAnalytics({super.key});
 
   @override
-  State<TeacherAnalyticsPage> createState() => _TeacherAnalyticsPageState();
+  State<OrgStudentAnalytics> createState() => _OrgStudentAnalyticsState();
 }
 
-class _TeacherAnalyticsPageState extends State<TeacherAnalyticsPage> {
+class _OrgStudentAnalyticsState extends State<OrgStudentAnalytics> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Analytics"),
+        title: const Text("Student Analytics"),
       ),
       body: ListView(
         children: [

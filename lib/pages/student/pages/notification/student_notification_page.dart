@@ -41,7 +41,6 @@ class _StudentNotificationPageState extends State<StudentNotificationPage> {
           children: [
             Expanded(
               child: ListView.builder(
-                  reverse: true,
                   itemCount: notifications.length,
                   itemBuilder: (context, index) {
                     Notification notification = notifications[index];
